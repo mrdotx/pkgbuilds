@@ -1,0 +1,22 @@
+# Maintainer: mrdotx <klassiker@gmx.de>
+pkgname=doas-sudo
+pkgver=1
+pkgrel=1
+pkgdesc="A symlink for using doas as a drop-in replacement for sudo"
+arch=('any')
+url="https://github.com/Duncaen/OpenDoas"
+license=('MIT')
+depends=(
+    'opendoas'
+)
+provides=(
+    'sudo'
+)
+conflicts=(
+    'sudo'
+)
+
+package() {
+    install -d "$pkgdir"/usr/bin
+    ln -s $(which doas) "$pkgdir"/usr/bin/sudo
+}

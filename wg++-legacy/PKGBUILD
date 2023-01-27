@@ -1,0 +1,46 @@
+# Maintainer: mrdotx <klassiker@gmx.de>
+pkgname=wg++-legacy
+pkgver=2.1.0_20190107123114
+_pkgver=2019.01.07_123114
+pkgrel=1
+pkgdesc='WebGrab+Plus is a free multi-site incremental XMLTV EPG grabber.'
+arch=('any')
+url='http://webgrabplus.com/'
+license=('custom')
+depends=('mono')
+provides=('wg++')
+source=(
+    'WebGrabPlus_V2.1_install.tar.gz'
+    "SiteIni.Pack_$_pkgver.zip"
+    'wg++'
+)
+b2sums=('2c3a5b81bcccd3248cb77c6d56d1ca2d92112af544f3d299497944dd93ebcb7998938312da9f734c32c1d243314505946733bdf1f3e51b056381d14f8d409f9e'
+        '55d777037469bef562a9a5fcb3adc9a056a2eb27860003c7ecc4a605741a41e1014a9367c5661245491de83a073635cfd66895320815f2245bad254c37e604f5'
+        '6c65cdf3fa7d0b2e2677f1f4fa96c41aaae6a4af7947e0a38739f04d3844c019059038319a73e55d40622b814a6270fab077fb5fdefe5b9475f764c48394f64d')
+
+package() {
+    # Install application files:
+    mkdir -p "$pkgdir/opt/wg++"
+    cp -R "$srcdir/.wg++/bin" "$pkgdir/opt/wg++/"
+    cp -R "$srcdir/.wg++/doc" "$pkgdir/opt/wg++/"
+
+    cp -R "$srcdir/siteini.pack" "$pkgdir/opt/wg++/"
+
+    # Install configuration files:
+    mkdir -p "$pkgdir/usr/share/wg++"
+
+    ln -s "/opt/wg++/siteini.pack" "$pkgdir/usr/share/wg++/siteini.pack"
+
+    cp -R "$srcdir/.wg++/mdb" "$pkgdir/usr/share/wg++/"
+    mv "$pkgdir/usr/share/wg++/mdb/mdb.config.example.xml" "$pkgdir/usr/share/wg++/mdb/mdb.config.xml"
+
+    cp -R "$srcdir/.wg++/rex" "$pkgdir/usr/share/wg++/"
+    mv "$pkgdir/usr/share/wg++/rex/rex.config.example.xml" "$pkgdir/usr/share/wg++/rex/rex.config.xml"
+
+    cp -R "$srcdir/.wg++/siteini.user" "$pkgdir/usr/share/wg++/"
+
+    cp -R "$srcdir/.wg++/WebGrab++.config.example.xml" "$pkgdir/usr/share/wg++/WebGrab++.config.xml"
+
+    # Executable:
+    install -Dm755 "$srcdir/wg++" "$pkgdir/usr/bin/wg++"
+}
