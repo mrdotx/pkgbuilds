@@ -2,7 +2,7 @@
 
 pkgbuilds that are removed from the aur or not uploaded at all
 
-| name        | comment                                                 |
-| :---------- | :------------------------------------------------------ |
-| doas-sudo   | opendoas-sudo was removed because of 'can break things' |
-| wg++-legacy | last wg++ version before the license model was changed  |
+| name          | comment                                                 |
+| :------------ | :------------------------------------------------------ |
+| opendoas-sudo | removed because of 'This is just going to break things' |
+| wg++-legacy   | last wg++ version before the license model was changed  |

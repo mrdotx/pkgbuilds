@@ -1,4 +1,4 @@
-pkgbase = doas-sudo
+pkgbase = opendoas-sudo
 	pkgdesc = A symlink for using doas as a drop-in replacement for sudo
 	pkgver = 1
 	pkgrel = 1
@@ -9,4 +9,4 @@ pkgbase = doas-sudo
 	provides = sudo
 	conflicts = sudo
 
-pkgname = doas-sudo
+pkgname = opendoas-sudo

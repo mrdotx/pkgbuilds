@@ -1,5 +1,5 @@
 # Maintainer: mrdotx <klassiker@gmx.de>
-pkgname=doas-sudo
+pkgname=opendoas-sudo
 pkgver=1
 pkgrel=1
 pkgdesc="A symlink for using doas as a drop-in replacement for sudo"
