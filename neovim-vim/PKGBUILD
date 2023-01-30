@@ -1,0 +1,33 @@
+# Maintainer: mrdotx <klassiker@gmx.de>
+pkgname=neovim-vim
+pkgver=1
+pkgrel=1
+pkgdesc='Runs neovim if vi, vim, edit, vedit, ex, view or vimdiff is called'
+arch=('any')
+depends=(
+    'neovim'
+)
+provides=(
+    'vi'
+    'vim'
+)
+conflicts=(
+    'vi'
+    'vim'
+    'vi-vim-symlink'
+    'neovim-symlinks'
+)
+
+package() {
+    install -dm755 "$pkgdir/usr/bin/"
+    cd "$pkgdir/usr/bin/"
+
+    printf '#!/bin/sh\nexec nvim -e "$@"' > ex
+    printf '#!/bin/sh\nexec nvim -R "$@"' > view
+    printf '#!/bin/sh\nexec nvim -d "$@"' > vimdiff
+    chmod 755 *
+
+    for link in vi vim edit vedit; do
+        ln -s nvim $link
+    done
+}
