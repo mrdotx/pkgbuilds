@@ -18,5 +18,5 @@ conflicts=(
 
 package() {
     install -d "$pkgdir"/usr/bin
-    ln -s $(which doas) "$pkgdir"/usr/bin/sudo
+    ln -s $(command -v doas) "$pkgdir"/usr/bin/sudo
 }
