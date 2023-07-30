@@ -4,6 +4,7 @@ pkgver=1
 pkgrel=1
 pkgdesc='Runs neovim if vi, vim, edit, vedit, ex, view or vimdiff is called'
 arch=('any')
+url="https://neovim.io"
 depends=(
     'neovim'
 )

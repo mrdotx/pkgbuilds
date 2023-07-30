@@ -2,6 +2,7 @@ pkgbase = neovim-vim
 	pkgdesc = Runs neovim if vi, vim, edit, vedit, ex, view or vimdiff is called
 	pkgver = 1
 	pkgrel = 1
+	url = https://neovim.io
 	arch = any
 	depends = neovim
 	provides = vi
