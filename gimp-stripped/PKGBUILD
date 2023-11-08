@@ -1,7 +1,7 @@
 # Maintainer: mrdotx <klassiker@gmx.de>
 _pkgname=gimp
 pkgname=gimp-stripped
-pkgver=2.10.34
+pkgver=2.10.36
 pkgrel=1
 pkgdesc='GNU Image Manipulation Program (stripped from most unnecessary dependencies)'
 url='https://www.gimp.org'
@@ -78,7 +78,7 @@ options=(
 )
 _archive="$_pkgname-$pkgver"
 source=("https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.bz2")
-b2sums=('0b2d3a81abf89684bb90e2101896db3479a25c5da76738543dba8d0378e64608eee9aeb24888e15f5e347f72fa1df3e9b82aa27e503ee61d1c4d45d44fa7bddc')
+b2sums=('d033cd1407df3399b5968b7e3f7838d288143080b516476a5dd46599b6a84ac2efca591521368cef7a1c3d9935b45ed3262fb469e1ae36ccf60a1199f5cfa44d')
 
 build() {
     cd "$_archive"
