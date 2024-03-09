@@ -2,7 +2,7 @@
 _pkgname=gimp
 pkgname=gimp-stripped
 pkgver=2.10.36
-pkgrel=1
+pkgrel=2
 pkgdesc='GNU Image Manipulation Program (stripped from most unnecessary dependencies)'
 url='https://www.gimp.org'
 arch=('x86_64')
@@ -72,10 +72,6 @@ optdepends=(
     'gutenprint: for sophisticated printing only as gimp has built-in cups print support'
     'gvfs: for HTTP/S support (and many other schemes)'
 )
-options=(
-    '!emptydirs'
-    '!docs'
-)
 _archive="$_pkgname-$pkgver"
 source=("https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.bz2")
 b2sums=('d033cd1407df3399b5968b7e3f7838d288143080b516476a5dd46599b6a84ac2efca591521368cef7a1c3d9935b45ed3262fb469e1ae36ccf60a1199f5cfa44d')
@@ -123,6 +119,5 @@ build() {
 package() {
     cd "$_archive"
     make DESTDIR="$pkgdir" install
-    rm -r "$pkgdir/usr/share/man"
     ln -s "gimptool-2.0" "$pkgdir/usr/bin/gimptool"
 }
