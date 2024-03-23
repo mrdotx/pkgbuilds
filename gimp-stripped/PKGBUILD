@@ -65,6 +65,7 @@ makedepends=(
     'intltool'
 
     'iso-codes'
+    'glib-networking'
 )
 optdepends=(
     'alsa-lib: for MIDI event controller module'
