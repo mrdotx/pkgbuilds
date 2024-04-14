@@ -2,7 +2,7 @@
 
 pkgbuilds that are removed from the aur or not uploaded at all
 
-| name              | comment                                                             |
+| folder            | comment                                                             |
 | :---------------- | :------------------------------------------------------------------ |
 | gimp-stripped     | removed because of 'Not allowed by AUR submission guidelines'       |
 | inkscape-stripped | inkscape stripped from most unnecessary dependencies and extensions |
