@@ -1,16 +1,16 @@
 # Maintainer: mrdotx <klassiker@gmx.de>
 _pkgname=wg++
 pkgname=wg++-legacy
+pkgdesc='WebGrab+Plus is a free multi-site incremental XMLTV EPG grabber.'
 pkgver=2.1.0_20190107123114
 _pkgver=2019.01.07_123114
-pkgrel=1
-pkgdesc='WebGrab+Plus is a free multi-site incremental XMLTV EPG grabber.'
-arch=('any')
+pkgrel=2
 url='http://webgrabplus.com'
+arch=('any')
 license=('custom')
 depends=('mono')
-conflicts=("$_pkgname")
 provides=("$_pkgname")
+conflicts=("$_pkgname")
 source=(
     'WebGrabPlus_V2.1_install.tar.gz'
     "SiteIni.Pack_$_pkgver.zip"
