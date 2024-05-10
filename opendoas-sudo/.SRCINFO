@@ -1,7 +1,7 @@
 pkgbase = opendoas-sudo
 	pkgdesc = A symlink for using doas as a drop-in replacement for sudo
 	pkgver = 1
-	pkgrel = 1
+	pkgrel = 2
 	url = https://github.com/Duncaen/OpenDoas
 	arch = any
 	license = MIT

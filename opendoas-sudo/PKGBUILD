@@ -1,20 +1,14 @@
 # Maintainer: mrdotx <klassiker@gmx.de>
 pkgname=opendoas-sudo
+pkgdesc='A symlink for using doas as a drop-in replacement for sudo'
 pkgver=1
-pkgrel=1
-pkgdesc="A symlink for using doas as a drop-in replacement for sudo"
+pkgrel=2
+url='https://github.com/Duncaen/OpenDoas'
 arch=('any')
-url="https://github.com/Duncaen/OpenDoas"
 license=('MIT')
-depends=(
-    'opendoas'
-)
-provides=(
-    'sudo'
-)
-conflicts=(
-    'sudo'
-)
+depends=('opendoas')
+provides=('sudo')
+conflicts=('sudo')
 
 package() {
     install -d "$pkgdir"/usr/bin
