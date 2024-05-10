@@ -1,13 +1,12 @@
 # Maintainer: mrdotx <klassiker@gmx.de>
 pkgname=neovim-vim
-pkgver=1
-pkgrel=1
 pkgdesc='Runs neovim if vi, vim, edit, vedit, ex, view or vimdiff is called'
+pkgver=1
+pkgrel=2
+url='https://neovim.io'
 arch=('any')
-url="https://neovim.io"
-depends=(
-    'neovim'
-)
+license=('MIT')
+depends=('neovim')
 provides=(
     'vi'
     'vim'
