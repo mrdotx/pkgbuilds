@@ -1,33 +1,57 @@
 # Maintainer: mrdotx <klassiker@gmx.de>
 _pkgname=inkscape
 pkgname=inkscape-stripped
-pkgver=1.3.2
-pkgrel=2
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
+pkgver=1.3.2
+pkgrel=3
 url='https://inkscape.org'
-license=('GPL' 'LGPL')
 arch=('x86_64')
+license=('GPL-3.0-or-later')
 makedepends=(
     'cmake'
     'boost'
     'git'
 )
 depends=(
+    'atkmm'
     'boost-libs'
+    'cairo'
+    'cairomm'
     'double-conversion'
+    'fontconfig'
+    'freetype2'
     'gc'
+    'gcc-libs'
+    'gdk-pixbuf2'
+    'glib2'
+    'glibc'
+    'glibmm'
+    # 'gobject-introspection-runtime'
     'graphicsmagick'
     'gsl'
     'gspell'
+    'gtk3'
     'gtkmm3'
     'gtksourceview4'
+    'harfbuzz'
+    'hicolor-icon-theme'
     'lcms2'
     'lib2geom'
     'libcdr'
+    'libepoxy'
     'libjpeg-turbo'
+    'libpng'
+    'librevenge'
+    'libsigc++'
     'libsoup'
     'libvisio'
+    'libwpg'
+    'libx11'
+    'libxml2'
     'libxslt'
+    # 'pango'
+    # 'pangomm'
+    # 'poppler'
     'poppler-glib'
     'potrace'
     'python'
@@ -53,8 +77,10 @@ depends=(
     # 'python-six'
     # 'python-urllib3'
     # 'python-zstandard'
+    'readline'
     # 'scour'
     'ttf-font'
+    'zlib'
 )
 optdepends=(
     'fig2dev: xfig input'
@@ -65,84 +91,68 @@ optdepends=(
 )
 provides=("$_pkgname")
 conflicts=("$_pkgname")
-_archivever=${pkgver//./_}
-_archive="inkscape-INKSCAPE_$_archivever"
 source=(
-    "https://gitlab.com/inkscape/inkscape/-/archive/INKSCAPE_$_archivever/$_archive.tar.bz2"
-    'include-missing-header-file.patch'
+    "git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_${pkgver//./_}"
     'inkscape-lib2geom::git+https://gitlab.com/inkscape/lib2geom.git'
-    'inkscape-libcroco::git+https://gitlab.com/inkscape/libcroco.git'
+    # 'inkscape-libcroco::git+https://gitlab.com/inkscape/libcroco.git'
     # 'inkscape-themes::git+https://gitlab.com/inkscape/themes.git'
     'inkscape-extensions::git+https://gitlab.com/inkscape/extensions.git'
     # 'inkscape-extras-inkscape-import-clipart::git+https://gitlab.com/inkscape/extras/inkscape-import-clipart.git'
     # 'inkscape-extras-extension-xaml::git+https://gitlab.com/inkscape/extras/extension-xaml.git'
     # 'inkscape-extras-extensions-gcodetools::git+https://gitlab.com/inkscape/extras/extensions-gcodetools.git'
     # 'inkscape-extras-extension-manager::git+https://gitlab.com/inkscape/extras/extension-manager.git'
-    poppler-24.03.patch
 )
-b2sums=('920bef80e0494cc5fb1790407a9c11533e00a08c4c5e3b26415fe4031477ade91edd717d33b1e45acb4f0f83cb388c3242f8356e2ab298a7af998b5d83828d52'
-        'bb29882db2ead9112e12535b9695ecbd173d0e3524495dc0a3193eb43c204e521d298931c6e988d7a887780441d16ef891057d481b80101d8c966db16ae6e641'
+b2sums=('fa950706618c913149bc368c14c6d9a3fba9a30544c6afaf92f9cc842093a72a7df91d20754bc2879da29add7b5df85da09995aee2f54e83d8bf044cbd2cdfd3'
         'SKIP'
-        'SKIP'
-        'SKIP'
-        'b8ed08ef09afbab15196ae6d0f198acc01a4000bc2688d0209d53108dac0c801f9d3d1d3be78893e6268f0e82ca7f61b6975252d29aa657487fe792d42c79532')
+        'SKIP')
+
+_backports=(
+    # include missing header file
+    '694d8ae43d06efff21adebf377ce614d660b24cd'
+
+    # Fix build with poppler >= 24.05.0
+    '96ca7a6c215aa14336b52753f56244dc8796ec43'
+    # Fix build with >=poppler-24.03.0
+    'f7e944575ea5247952d23f85dfa905cfa13f7b28'
+
+    # Up C++ version to C++20.
+    '1798e9c13b786f3d077ba0132592c4d5c1d1fb9b'
+)
 
 prepare() {
-    cd "$_archive"
+    cd "$_pkgname"
 
-    patch -p0 -i ../include-missing-header-file.patch
+    git submodule set-url share/extensions ../inkscape-extensions/
+    git submodule set-url src/3rdparty/2geom ../inkscape-lib2geom/
+    # git submodule set-url share/themes ../inkscape-themes/
+    git -c protocol.file.allow=always submodule update --init
 
-    ## 3rdparty
-    _extra="$srcdir/$_archive/src/3rdparty/2geom"
-    rm -rf "$_extra"
-    ln -s "$srcdir/inkscape-lib2geom" "$_extra"
-    # mkdir -p "$_extra"
-    _extra="$srcdir/$_archive/src/3rdparty/libcroco"
-    rm -rf "$_extra"
-    ln -s "$srcdir/inkscape-libcroco" "$_extra"
-    # mkdir -p "$_extra"
+    # (
+    # cd share/extensions/
+    # git submodule set-url other/gcodetools ../inkscape-extras-extensions-gcodetools/
+    # git submodule set-url other/inkman ../inkscape-extras-extension-manager/
+    # git submodule set-url other/clipart ../inkscape-extras-inkscape-import-clipart/
+    # git submodule set-url other/extension-xaml ../inkscape-extras-extension-xaml/
+    # git -c protocol.file.allow=always submodule update --init
+    # )
 
-    ## themes
-    _extra="$srcdir/$_archive/share/themes"
-    rm -rf "$_extra"
-    # ln -s "$srcdir/inkscape-themes" ""$_extra"
-    mkdir -p "$_extra"
-
-    ## extensions
-    _extra="$srcdir/$_archive/share/extensions"
-    rm -rf "$_extra"
-    ln -s "$srcdir/inkscape-extensions" "$_extra"
-    # mkdir -p "$_extra"
-
-    ## extras
-    _extra="$srcdir/$_archive/share/extensions/other/clipart"
-    rm -rf "$_extra"
-    # ln -s "$srcdir/inkscape-extras-inkscape-import-clipart" "$_extra"
-    mkdir -p "$_extra"
-    _extra="$srcdir/$_archive/share/extensions/other/extension-xaml"
-    rm -rf "$_extra"
-    # ln -s "$srcdir/inkscape-extras-extension-xaml" "$_extra"
-    mkdir -p "$_extra"
-    _extra="$srcdir/$_archive/share/extensions/other/gcodetools"
-    rm -rf "$_extra"
-    # ln -s "$srcdir/inkscape-extras-extensions-gcodetools" "$_extra"
-    mkdir -p "$_extra"
-    _extra="$srcdir/$_archive/share/extensions/other/inkman"
-    rm -rf "$_extra"
-    # ln -s "$srcdir/inkscape-extras-extension-manager" "$_extra"
-    mkdir -p "$_extra"
-
-    patch -Np1 -i ../poppler-24.03.patch
+    local _c
+    for _c in "${_backports[@]}"; do
+        git log --oneline -1 "${_c}"
+        git cherry-pick -n "${_c}"
+    done
 }
 
 build() {
-    mkdir -p build
-    export PKG_CONFIG_PATH='/usr/lib/imagemagick6/pkgconfig'
-    cmake -H$_archive -Bbuild \
-        -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_INSTALL_PREFIX:PATH=/usr \
-        -DWITH_DBUS=ON \
+    local cmake_options=(
+        -B build
+        -D CMAKE_BUILD_TYPE=None
+        -D CMAKE_INSTALL_PREFIX:PATH=/usr
+        -W no-dev
+        -S $_pkgname
+    )
 
+    cmake "${cmake_options[@]}"
     cmake --build build
 }
 
