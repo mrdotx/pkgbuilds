@@ -1,14 +1,23 @@
 # Maintainer: mrdotx <klassiker@gmx.de>
 _pkgname=gimp
 pkgname=gimp-stripped
-pkgver=2.10.38
-pkgrel=1
 pkgdesc='GNU Image Manipulation Program (stripped from most unnecessary dependencies)'
+pkgver=2.10.38
+pkgrel=2
 url='https://www.gimp.org'
 arch=('x86_64')
-license=('GPL' 'LGPL')
-conflicts=("$_pkgname")
-provides=("$_pkgname")
+license=('GPL-3.0-or-later')
+makedepends=(
+    # 'alsa-lib'
+    # 'ghostscript'
+    # 'gtk-doc'
+    # 'gvfs'
+    'intltool'
+
+    'iso-codes'
+    'glib-networking'
+    'glib2-devel'
+)
 depends=(
     # core deps
     'babl'
@@ -57,25 +66,27 @@ depends=(
     'poppler-glib'
     # 'xz'
 )
-makedepends=(
-    # 'alsa-lib'
-    # 'ghostscript'
-    # 'gtk-doc'
-    # 'gvfs'
-    'intltool'
-
-    'iso-codes'
-    'glib-networking'
-)
 optdepends=(
     'alsa-lib: for MIDI event controller module'
     'ghostscript: for PostScript support'
     'gutenprint: for sophisticated printing only as gimp has built-in cups print support'
     'gvfs: for HTTP/S support (and many other schemes)'
 )
+provides=("$_pkgname")
+conflicts=("$_pkgname")
 _archive="$_pkgname-$pkgver"
-source=("https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.bz2")
-b2sums=('58c29e3e00d873e69a5e5f4e9c3ff4d868ccfb11914570306ef12c54ca7d3ef89a62d8c71fac1f2d1f426ac615dc4caf7a7260351c00301dce2b1aa4193bab6d')
+source=(
+    "https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.bz2"
+    '0001-fix-detection-of-libheif-1.15.0.patch'
+)
+b2sums=('58c29e3e00d873e69a5e5f4e9c3ff4d868ccfb11914570306ef12c54ca7d3ef89a62d8c71fac1f2d1f426ac615dc4caf7a7260351c00301dce2b1aa4193bab6d'
+        '4cf586af9689d0cca1cf2301725429cafb0133c247583d0e2daa6787fecd6677a006c0a1964abf9cdd1b26572cb3b9a053e83250b37e84fabeb72a5017bbcb52')
+
+prepare() {
+    cd "$_archive"
+
+    patch -Np1 < ../0001-fix-detection-of-libheif-1.15.0.patch
+}
 
 build() {
     cd "$_archive"
