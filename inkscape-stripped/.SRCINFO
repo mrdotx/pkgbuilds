@@ -1,7 +1,7 @@
 pkgbase = inkscape-stripped
 	pkgdesc = Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)
-	pkgver = 1.3.2
-	pkgrel = 5
+	pkgver = 1.4
+	pkgrel = 1
 	url = https://inkscape.org
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -58,13 +58,11 @@ pkgbase = inkscape-stripped
 	optdepends = texlive-pstricks: latex formulas
 	provides = inkscape
 	conflicts = inkscape
-	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_3_2
+	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4
 	source = inkscape-lib2geom::git+https://gitlab.com/inkscape/lib2geom.git
 	source = inkscape-extensions::git+https://gitlab.com/inkscape/extensions.git
-	source = 0001-Remove-device-manager.h-.cpp-and-src-ui-dialog-input.patch
-	b2sums = fa950706618c913149bc368c14c6d9a3fba9a30544c6afaf92f9cc842093a72a7df91d20754bc2879da29add7b5df85da09995aee2f54e83d8bf044cbd2cdfd3
+	b2sums = 7b3c989ab2251f7c3a6a4b94ebb1cd3e5d1b834d5f286431599e56feb1fcc9f6cb72f11cb72a3ab6d028e2bf2c627f47d74c33d2e7c5ec9fd3d9aaa80b4b4884
 	b2sums = SKIP
 	b2sums = SKIP
-	b2sums = cf657acdea913ea183842d742af9c34247103bf78928ffba772e3c5ba12c0ae3cd473ecfcc7791b53e64bf4904e48a8981b0f3dc73b866670266a26b9380052c
 
 pkgname = inkscape-stripped
