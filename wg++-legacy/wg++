@@ -1,94 +1,105 @@
-#!/bin/bash
+#!/bin/sh
 
-# Webgrabber+Plus has never meant to be installed into Unix operating system. It
-# was meant to be used as a folder, where user has RW access. The below script
-# was needed in order to make it act like a proper application, installed into
-# the operating system.
-#
-# http://www.webgrabplus.com/content/solved-command-line-option-specifying-config-file-name
+# path:   /home/klassiker/.local/share/repos/pkgbuilds/wg++-legacy/wg++
+# author: klassiker [mrdotx]
+# github: https://github.com/mrdotx/pkgbuilds
+# date:   2024-10-12T07:10:08+0200
 
-CONFIG_DIR=~/wg++
-EXECUTABLE=$(basename "$0")
+config_path="$HOME/wg++"
+config_file="WebGrab++.config.xml"
+exec_cmd="mono /opt/wg++/bin/WebGrab+Plus.exe"
 
-print_help () {
-    echo -e "Usage:"
-    echo -e "\t$EXECUTABLE - Uses default '$CONFIG_DIR' configuration directory. Will be created if missing."
-    echo -e "\t$EXECUTABLE <path> - Path to configuration directory."
-    echo -e "\t$EXECUTABLE --help - Show help screen."
-    echo -e "\t"
-    echo -e "Configuration template is stored in '/usr/share/wg++'. Copy it to your preferred location:"
-    echo -e "\tcp -R /usr/share/wg++ /path/to/<configuration_directory>"
-}
+script=$(basename "$0")
+help="$script [-h/--help] -- script to start WebGrab+Plus.exe
+  Introduction:
+    Webgrabber+Plus was never intended to be installed in a Unix operating
+    system. It was intended to be used as a folder to which the user has
+    read/write access. This script was needed to make it behave like a real
+    application, installed in the operating system.
 
-# Check if user supplied any arguments
-if [ $# -eq 0 ]; then
-    #### User did not provide any arguments to wg++ ####
+    http://www.webgrabplus.com/content/solved-command-line-option-specifying-config-file-name
 
-    # Use default config dir "$CONFIG_DIR"
-    if [ ! -d "$CONFIG_DIR" ]; then
-        cp -R /usr/share/wg++ "$CONFIG_DIR"
-        if [ -d "$CONFIG_DIR" ]; then
-            echo "Configuration folder '$CONFIG_DIR' created! Run '$EXECUTABLE' again to use it."
-            echo "For more information, see '$EXECUTABLE --help'."
+  Usage:
+    $script <path>
+
+  Settings:
+    Without a path, the default configuration directory is used or
+    will be created if it is missing.
+    <path> = path to configuration directory
+
+    The configuration template is stored in '/usr/share/wg++'.
+    Copy it to your preferred location:
+      cp -R '/usr/share/wg++' '/path/to/configuration_directory'
+
+  Examples:
+    $script
+    $script '/path/to/configuration_directory'
+
+  Config:
+    config path  = $config_path
+    config file  = $config_file
+    exec command = $exec_cmd"
+
+# check if the user has asked for help
+case "$1" in
+    -h | --help)
+        printf "%s\n" "$help"
+        exit 0
+        ;;
+esac
+
+# check if the user has specified arguments
+if [ $# -eq 0 ]; then # the user has not passed any arguments to wg++
+    # use default configuration directory "$config_path"
+    if [ ! -d "$config_path" ]; then
+        cp -R /usr/share/wg++ "$config_path"
+        if [ -d "$config_path" ]; then
+            printf "Configuration folder '%s' created! Run '%s' again to use it.\n" \
+                "$config_path" "$script"
+            printf "For more information, see '%s --help'.\n" \
+                "$script"
             exit 0
         else
-            echo "Failed to create configuration folder '$CONFIG_DIR'!"
-            print_help
+            printf "Failed to create configuration folder '%s'!\n" \
+                "$config_path"
+            printf "%s\n" "$help"
             exit 1
         fi
     fi
 
-    # Check if "$CONFIG_DIR" contains configuration file
-    if [ ! -f "$CONFIG_DIR/WebGrab++.config.xml" ]; then
-        echo "Some configuration files are missing from '$CONFIG_DIR' directory!"
-        print_help
-        exit 1
-    fi
+    # check if "$config_path" contains the configuration file
+    [ ! -f "$config_path/$config_file" ] \
+        && printf "The configuration file is missing in '%s' directory!\n" \
+            "$config_path" \
+        && printf "%s\n" "$help" \
+        && exit 1
 
-    # Double check if user can read/write "$CONFIG_DIR"
-    if [ ! -r "$CONFIG_DIR/WebGrab++.config.xml" ] || [ ! -w "$CONFIG_DIR/WebGrab++.config.xml" ]; then
-        echo "You do not have read/write access in '$CONFIG_DIR'."
-        print_help
-        exit 1
-    fi
+    # check if the user can read/write "$config_path/$config_file"
+    { [ ! -r "$config_path/$config_file" ] || [ ! -w "$config_path/$config_file" ]; } \
+        && printf "You do not have read/write access in '%s'.\n" \
+            "$config_path" \
+        && printf "%s\n" "$help" \
+        && exit 1
 
-    mono /opt/wg++/bin/WebGrab+Plus.exe "$CONFIG_DIR"
-else
-    #### User provided arguments to wg++ ####
+    eval "$exec_cmd $config_path"
+else # the user has passed arguments to wg++
+    # check whether 1 argument is present and whether it is an existing directory
+    { [ $# -ge 2 ] || [ ! -d "$1" ]; } \
+        && printf "Invalid path! You need to provide a path to WebGrabber+Plus configuration directory.\n" \
+        && printf "%s\n" "$help" \
+        && exit 1
 
-    # Check if there is 1 argument. Exit if more
-    if [ $# -ge 2 ]; then
-        echo "Invalid path! You need to provide a path to WebGrabber+Plus configuration directory."
-        print_help
-        exit 1
-    fi
+    # check if the directory contains the configuration file
+    [ ! -f "$1/$config_file" ] \
+        && printf "Wrong path! Your provided path does not contain the configuration file.\n" \
+        && printf "%s\n" "$help" \
+        && exit 1
 
-    # Check if user asked for help
-    if [ "$1" == "-h" ] || [ "$1" == "-H" ] || [ "$1" == "--help" ] || [ "$1" == "--HELP" ]; then
-        print_help
-        exit 0
-    fi
+    # check if the user has read/write access to the given path
+    { [ ! -r "$1/$config_file" ] || [ ! -w "$1/$config_file" ]; } \
+        && printf "You do not have read/write access to your given directory.\n" \
+        && printf "%s\n" "$help" \
+        && exit 1
 
-    # Check if given parameter is existing directory
-    if [ ! -d "$1" ]; then
-        echo "Invalid path! You need to provide a path to WebGrabber+Plus configuration directory."
-        print_help
-        exit 1
-    fi
-
-    # Check if directory contains configuration file
-    if [ ! -f "$1/WebGrab++.config.xml" ]; then
-        echo "Wrong path! Your provided path does not contain configuration files."
-        print_help
-        exit 1
-    fi
-
-    # Check if user has read/write access to given path
-    if [ ! -r "$1/WebGrab++.config.xml" ] || [ ! -w "$1/WebGrab++.config.xml" ]; then
-        echo "You do not have read/write access to your given directory."
-        print_help
-        exit 1
-    fi
-
-    mono /opt/wg++/bin/WebGrab+Plus.exe "$1"
+    eval "$exec_cmd $1"
 fi
