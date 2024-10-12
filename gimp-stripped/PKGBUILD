@@ -17,6 +17,7 @@ makedepends=(
     'iso-codes'
     'glib-networking'
     'glib2-devel'
+    'libxslt'
 )
 depends=(
     # core deps

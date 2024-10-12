@@ -9,6 +9,7 @@ pkgbase = gimp-stripped
 	makedepends = iso-codes
 	makedepends = glib-networking
 	makedepends = glib2-devel
+	makedepends = libxslt
 	depends = babl
 	depends = gegl
 	depends = gtk2
