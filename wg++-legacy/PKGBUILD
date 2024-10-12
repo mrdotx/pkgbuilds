@@ -4,7 +4,7 @@ pkgname=wg++-legacy
 pkgdesc='WebGrab+Plus is a free multi-site incremental XMLTV EPG grabber.'
 pkgver=2.1.0_20190107123114
 _pkgver=2019.01.07_123114
-pkgrel=2
+pkgrel=3
 url='http://webgrabplus.com'
 arch=('any')
 license=('custom')
@@ -18,7 +18,7 @@ source=(
 )
 b2sums=('2c3a5b81bcccd3248cb77c6d56d1ca2d92112af544f3d299497944dd93ebcb7998938312da9f734c32c1d243314505946733bdf1f3e51b056381d14f8d409f9e'
         '55d777037469bef562a9a5fcb3adc9a056a2eb27860003c7ecc4a605741a41e1014a9367c5661245491de83a073635cfd66895320815f2245bad254c37e604f5'
-        'fd9d1f70be4e12e009f8e7595e72ff33d44990d8717e2d1a74c9f7ef9375581f07108b3812d60614c7d6661f2df6dbf4be540d015765690a07973ee1ee98fb6f')
+        '7df8b001e8cffe37af9b02d1abbd6089fde5f22aabeee1add04b92591e432b9a68615037bd5a7772825a8c6cc7ba0882d3972003c5092dd34752c0dffbbb909e')
 
 package() {
     # Install application files:
