@@ -3,7 +3,7 @@ _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
 pkgver=1.4
-pkgrel=2
+pkgrel=3
 url='https://inkscape.org'
 arch=('x86_64')
 license=('GPL-3.0-or-later')
@@ -102,16 +102,20 @@ source=(
     # 'inkscape-extras-extension-xaml::git+https://gitlab.com/inkscape/extras/extension-xaml.git'
     # 'inkscape-extras-extensions-gcodetools::git+https://gitlab.com/inkscape/extras/extensions-gcodetools.git'
     # 'inkscape-extras-extension-manager::git+https://gitlab.com/inkscape/extras/extension-manager.git'
-    'poppler-24.10.diff'
-    'poppler-24.11.diff'
 )
 b2sums=('7b3c989ab2251f7c3a6a4b94ebb1cd3e5d1b834d5f286431599e56feb1fcc9f6cb72f11cb72a3ab6d028e2bf2c627f47d74c33d2e7c5ec9fd3d9aaa80b4b4884'
         'SKIP'
-        'SKIP'
-        'ebc6e108aa12def998a34de6461dc700365403fe97b08fb14849b088e86a3ff419366acfe99ec1183692706bd0025dd31a0c6d4005d0a3bbab932662f38be620'
-        'ebbb826056f61a7a3f877f8b3d79e6dde2e27df3cc30cb886a88964c584ec2c885e680ba906752b4280d022a995121f0790f759293d27aea13a2c24188d8b828')
+        'SKIP')
 
 _backports=(
+    # Future-proof against poppler 24.10 changes
+    '22304ae8034d067670a9f95022083a75fac92b4c'
+    # Fix building with Poppler 24.11
+    '0399372ec240d23e0e70548237a541f2b5bf0f34'
+    # Fix Poppler private includes
+    '874dcfbd303bc7a1bddb6f34aebbb4dba8eda771'
+    # Fix building with poppler 24.12.0
+    'c9046810d899a408bfbd489aad91872b1203ee6d'
 )
 
 prepare() {
@@ -136,9 +140,6 @@ prepare() {
         git log --oneline -1 "${_c}"
         git cherry-pick -n "${_c}"
     done
-
-    patch -Np1 -i ../poppler-24.10.diff
-    patch -Np1 -i ../poppler-24.11.diff
 }
 
 build() {
