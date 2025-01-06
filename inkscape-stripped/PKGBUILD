@@ -118,6 +118,9 @@ _backports=(
     'c9046810d899a408bfbd489aad91872b1203ee6d'
 )
 
+_reverts=(
+)
+
 prepare() {
     cd "$_pkgname"
 
@@ -135,10 +138,16 @@ prepare() {
     # git -c protocol.file.allow=always submodule update --init
     # )
 
-    local _c
+    local _c _l
     for _c in "${_backports[@]}"; do
-        git log --oneline -1 "${_c}"
-        git cherry-pick -n "${_c}"
+      if [[ "${_c}" == *..* ]]; then _l='--reverse'; else _l='--max-count=1'; fi
+      git log --oneline "${_l}" "${_c}"
+      git cherry-pick --mainline 1 --no-commit "${_c}"
+    done
+    for _c in "${_reverts[@]}"; do
+      if [[ "${_c}" == *..* ]]; then _l='--reverse'; else _l='--max-count=1'; fi
+      git log --oneline "${_l}" "${_c}"
+      git revert --mainline 1 --no-commit "${_c}"
     done
 }
 
