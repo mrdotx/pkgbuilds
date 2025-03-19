@@ -2,74 +2,82 @@
 _pkgname=gimp
 pkgname=gimp-stripped
 pkgdesc='GNU Image Manipulation Program (stripped from most unnecessary dependencies)'
-pkgver=2.10.38
-pkgrel=4
+pkgver=3.0.0
+pkgrel=1
 url='https://www.gimp.org'
 arch=('x86_64')
 license=('GPL-3.0-or-later')
 makedepends=(
-    # 'alsa-lib'
-    # 'ghostscript'
-    # 'gtk-doc'
-    # 'gvfs'
-    'intltool'
-
-    'iso-codes'
-    'glib-networking'
+    #'alsa-lib'
+    'appstream'
+    #'cfitsio'
+    #'ghostscript'
+    #'gi-docgen'
+    #'gjs'
     'glib2-devel'
-    'libxslt'
+    'gobject-introspection'
+    #'gtk-doc'
+    #'gvfs'
+    'intltool'
+    'meson'
+    #'vala'
 )
 depends=(
     # core deps
+    'appstream-glib'
     'babl'
-    # 'cairo'
-    # 'fontconfig'
-    # 'freetype2'
-    # 'gcc-libs'
-    # 'gdk-pixbuf2'
+    #'cairo'
+    #'fontconfig'
+    #'freetype2'
+    #'gcc-libs'
+    #'gdk-pixbuf2'
     'gegl'
-    # 'glib2'
-    # 'glibc'
-    'gtk2'
-    # 'harfbuzz'
-    # 'hicolor-icon-theme'
-    # 'iso-codes'
-    # 'json-glib'
-    # 'lcms2'
+    #'glib2'
+    #'glibc'
+    'gtk3'
+    #'harfbuzz'
+    #'hicolor-icon-theme'
+    #'iso-codes'
+    #'json-glib'
+    #'lcms2'
     'libgexiv2'
-    # 'libmypaint'
-    # 'libunwind'
+    #'libmypaint'
+    #'libunwind'
     'mypaint-brushes1'
-    # 'pango'
-    # 'zlib'
+    #'pango'
+    'python-gobject'
+    #'zlib'
 
     # plugins deps
-    # 'bzip2'
-    # 'libgudev'
-    # 'libheif'
-    # 'libjpeg-turbo'
-    # 'libjxl'
-    # 'libmng'
-    # 'libpng'
-    # 'librsvg'
-    # 'libtiff'
-    # 'libwebp'
-    # 'libwmf'
-    # 'libx11'
-    # 'libxcursor'
-    # 'libxext'
-    # 'libxfixes'
-    # 'libxmu'
-    # 'libxpm'
-    # 'openexr'
-    # 'openjpeg2'
+    #'aalib'
+    #'bzip2'
+    #'libgudev'
+    #'libheif'
+    #'libjpeg-turbo'
+    #'libjxl'
+    #'libmng'
+    #'libpng'
+    #'librsvg'
+    #'libtiff'
+    #'libwebp'
+    #'libwmf'
+    #'libx11'
+    #'libxcursor'
+    #'libxext'
+    #'libxfixes'
+    #'libxmu'
+    #'libxpm'
+    #'openexr'
+    #'openjpeg2'
     'poppler-data'
     'poppler-glib'
-    # 'xz'
+    #'xz'
 )
 optdepends=(
     'alsa-lib: for MIDI event controller module'
+    'cfitsio: for FITS support'
     'ghostscript: for PostScript support'
+    'gjs: for JavaScript scripting support'
     'gutenprint: for sophisticated printing only as gimp has built-in cups print support'
     'gvfs: for HTTP/S support (and many other schemes)'
 )
@@ -77,62 +85,62 @@ provides=("$_pkgname")
 conflicts=("$_pkgname")
 _archive="$_pkgname-$pkgver"
 source=(
-    "https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.bz2"
-    '0001-fix-detection-of-libheif-1.15.0.patch'
+    https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.xz
 )
-b2sums=('58c29e3e00d873e69a5e5f4e9c3ff4d868ccfb11914570306ef12c54ca7d3ef89a62d8c71fac1f2d1f426ac615dc4caf7a7260351c00301dce2b1aa4193bab6d'
-        '4cf586af9689d0cca1cf2301725429cafb0133c247583d0e2daa6787fecd6677a006c0a1964abf9cdd1b26572cb3b9a053e83250b37e84fabeb72a5017bbcb52')
+b2sums=('fe33a4f59850791867111d8c775ce74f083c75f789243ea8f622137ebae045f0c21b12d2b288e97ca611e68d4cb219d05825b082cf2594742ebbbd277ac9d2a8')
 
 prepare() {
     cd "$_archive"
-
-    patch -Np1 < ../0001-fix-detection-of-libheif-1.15.0.patch
 }
 
 build() {
-    cd "$_archive"
+    local meson_options=(
+        --buildtype=plain
+        --prefix=/usr
+        --sysconfdir=/etc
+        --libexecdir=/usr/bin
+        -Denable-console-bin=false
+        -Dbug-report-url='https://github.com/mrdotx/pkgbuilds/issues'
+        -Dcheck-update=no
+        -Dlibunwind=false
+        -Dlibbacktrace=false
+        -Denable-default-bin=enabled
+        -Daa=disabled
+        -Dalsa=disabled
+        -Dappdata-test=disabled
+        -Dcairo-pdf=disabled
+        -Dfits=disabled
+        -Dghostscript=disabled
+        -Dgudev=disabled
+        -Dheif=disabled
+        -Dilbm=disabled
+        -Djpeg2000=disabled
+        -Djpeg-xl=disabled
+        -Dmng=disabled
+        -Dopenexr=disabled
+        -Dopenmp=enabled
+        -Dprint=false
+        -Dwebkit-unmaintained=false
+        -Dwebp=disabled
+        -Dwmf=disabled
+        -Dxcursor=disabled
+        -Dxpm=disabled
+        -Dheadless-tests=disabled
+        -Dfile-plug-ins-test=false
+        -Dcan-crosscompile-gir=false
+        -Dgi-docgen=disabled
+        -Dlinux-input=disabled
+        -Dvector-icons=true
+        -Dvala=disabled
+        -Djavascript=disabled
+        -Dlua=false
+        -Ddebug-self-in-build=false
+    )
 
-    export CFLAGS+=" -Wno-incompatible-pointer-types"
-
-    ./configure \
-        --prefix=/usr \
-        --sysconfdir=/etc \
-        --libexecdir=/usr/bin \
-        --disable-dependency-tracking \
-        --disable-maintainer-mode \
-        --disable-glibtest \
-        --disable-gtktest \
-        --disable-alsatest \
-        --disable-python \
-        --disable-check-update \
-        --disable-gimp-console \
-        --without-gs \
-        --without-libmng \
-        --without-aa \
-        --without-libxpm \
-        --without-openexr \
-        --without-webp \
-        --without-libheif \
-        --without-jpegxl \
-        --without-libbacktrace \
-        --without-libunwind \
-        --without-webkit \
-        --without-print \
-        --without-cairo-pdf \
-        --without-wmf \
-        --without-jpeg2000 \
-        --without-xmc \
-        --without-alsa \
-        --without-linux-input \
-        --without-gudev \
-        --without-xvfb-run \
-        --without-appdata-test
-  sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
-  make
+    arch-meson "$_archive" build "${meson_options[@]}"
+    meson compile -C build
 }
 
 package() {
-    cd "$_archive"
-    make DESTDIR="$pkgdir" install
-    ln -s "gimptool-2.0" "$pkgdir/usr/bin/gimptool"
+    meson install -C build --destdir "$pkgdir"
 }
