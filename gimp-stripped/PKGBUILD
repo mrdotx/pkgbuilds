@@ -100,7 +100,6 @@ build() {
         --prefix=/usr
         --sysconfdir=/etc
         --libexecdir=/usr/bin
-        -Denable-console-bin=false
         -Dbug-report-url='https://github.com/mrdotx/pkgbuilds/issues'
         -Dcheck-update=no
         -Dlibunwind=false
