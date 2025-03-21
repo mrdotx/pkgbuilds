@@ -19,6 +19,7 @@ makedepends=(
     #'gtk-doc'
     #'gvfs'
     'intltool'
+    'libxslt'
     'meson'
     #'vala'
 )
@@ -65,7 +66,7 @@ depends=(
     #'libxcursor'
     #'libxext'
     #'libxfixes'
-    #'libxmu'
+    'libxmu'
     #'libxpm'
     #'openexr'
     #'openjpeg2'
