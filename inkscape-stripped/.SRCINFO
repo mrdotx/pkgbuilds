@@ -1,7 +1,7 @@
 pkgbase = inkscape-stripped
 	pkgdesc = Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)
-	pkgver = 1.4
-	pkgrel = 8
+	pkgver = 1.4.1
+	pkgrel = 1
 	url = https://inkscape.org
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -38,7 +38,6 @@ pkgbase = inkscape-stripped
 	depends = libpng
 	depends = librevenge
 	depends = libsigc++
-	depends = libsoup
 	depends = libvisio
 	depends = libwpg
 	depends = libx11
@@ -59,10 +58,10 @@ pkgbase = inkscape-stripped
 	optdepends = python-tinycss2: DXF export
 	provides = inkscape
 	conflicts = inkscape
-	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4
-	source = inkscape-lib2geom::git+https://gitlab.com/inkscape/lib2geom.git
+	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4_1
 	source = inkscape-extensions::git+https://gitlab.com/inkscape/extensions.git
-	b2sums = 7b3c989ab2251f7c3a6a4b94ebb1cd3e5d1b834d5f286431599e56feb1fcc9f6cb72f11cb72a3ab6d028e2bf2c627f47d74c33d2e7c5ec9fd3d9aaa80b4b4884
+	source = inkscape-libcroco::git+https://gitlab.com/inkscape/libcroco.git
+	b2sums = 57190ace9ae1815e23c706a257573f19c29be9ecb2a24a20c79e6405117475102ea70df3306aab0809d959410847a3144ee5cc826fc0d6d44d89957141a4d458
 	b2sums = SKIP
 	b2sums = SKIP
 
