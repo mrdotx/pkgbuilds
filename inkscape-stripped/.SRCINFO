@@ -1,7 +1,7 @@
 pkgbase = inkscape-stripped
 	pkgdesc = Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)
-	pkgver = 1.4.1
-	pkgrel = 3
+	pkgver = 1.4.2
+	pkgrel = 1
 	url = https://inkscape.org
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -58,10 +58,10 @@ pkgbase = inkscape-stripped
 	optdepends = python-tinycss2: DXF export
 	provides = inkscape
 	conflicts = inkscape
-	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4_1
+	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4_2
 	source = inkscape-extensions::git+https://gitlab.com/inkscape/extensions.git
 	source = inkscape-libcroco::git+https://gitlab.com/inkscape/libcroco.git
-	b2sums = 57190ace9ae1815e23c706a257573f19c29be9ecb2a24a20c79e6405117475102ea70df3306aab0809d959410847a3144ee5cc826fc0d6d44d89957141a4d458
+	b2sums = a3e1febd62b684c87ebecead107ba38e19c6e45d0bb2ea0cb0269548cac98ec492e0c39c344c45aa52922c976ae3ea0d53bbf13f424f7404e13d98727e70e6ff
 	b2sums = SKIP
 	b2sums = SKIP
 

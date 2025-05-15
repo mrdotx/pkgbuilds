@@ -2,8 +2,8 @@
 _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
-pkgver=1.4.1
-pkgrel=3
+pkgver=1.4.2
+pkgrel=1
 url='https://inkscape.org'
 arch=('x86_64')
 license=('GPL-3.0-or-later')
@@ -103,15 +103,11 @@ source=(
     #'inkscape-extras-extension-afdesign::git+https://gitlab.com/inkscape/extras/extension-afdesign.git'
     #'inkscape-extras-extension-curve::git+https://gitlab.com/inkscape/extras/extension-curve.git')
 )
-b2sums=('57190ace9ae1815e23c706a257573f19c29be9ecb2a24a20c79e6405117475102ea70df3306aab0809d959410847a3144ee5cc826fc0d6d44d89957141a4d458'
+b2sums=('a3e1febd62b684c87ebecead107ba38e19c6e45d0bb2ea0cb0269548cac98ec492e0c39c344c45aa52922c976ae3ea0d53bbf13f424f7404e13d98727e70e6ff'
         'SKIP'
         'SKIP')
 
 _backports=(
-    # Bump cmake requirements
-    '3abcec047b94cf3793fddeafe8b9326e5936433d'
-    # Delete outdated PKG_CONFIG_USE_CMAKE_PREFIX_PATH from CMakeLists.txt
-    'eda68f03d871de326d3e470cd1839fc7f4039031'
 )
 
 _reverts=(
