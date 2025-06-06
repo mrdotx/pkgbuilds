@@ -1,7 +1,7 @@
 pkgbase = inkscape-stripped
 	pkgdesc = Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)
 	pkgver = 1.4.2
-	pkgrel = 1
+	pkgrel = 2
 	url = https://inkscape.org
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -55,7 +55,6 @@ pkgbase = inkscape-stripped
 	optdepends = gvfs: import clip art
 	optdepends = pstoedit: latex formulas
 	optdepends = texlive-pstricks: latex formulas
-	optdepends = python-tinycss2: DXF export
 	provides = inkscape
 	conflicts = inkscape
 	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4_2

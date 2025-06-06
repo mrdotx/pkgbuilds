@@ -3,7 +3,7 @@ _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
 pkgver=1.4.2
-pkgrel=1
+pkgrel=2
 url='https://inkscape.org'
 arch=('x86_64')
 license=('GPL-3.0-or-later')
@@ -74,6 +74,7 @@ depends=(
     #'python-pillow'
     #'python-pyserial'
     #'python-requests'
+    #'python-tinycss2'
     #'python-urllib3'
     #'python-zstandard'
     'readline'
@@ -87,7 +88,6 @@ optdepends=(
     'pstoedit: latex formulas'
     # this pulls in texlive-basic, so should suffice
     'texlive-pstricks: latex formulas'
-    'python-tinycss2: DXF export'
 )
 provides=("$_pkgname")
 conflicts=("$_pkgname")
