@@ -1,7 +1,7 @@
 pkgbase = inkscape-stripped
 	pkgdesc = Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)
 	pkgver = 1.4.2
-	pkgrel = 3
+	pkgrel = 4
 	url = https://inkscape.org
 	arch = x86_64
 	license = GPL-3.0-or-later
@@ -48,6 +48,7 @@ pkgbase = inkscape-stripped
 	depends = python
 	depends = python-lxml
 	depends = python-numpy
+	depends = python-tinycss2
 	depends = readline
 	depends = ttf-font
 	depends = zlib
