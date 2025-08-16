@@ -3,7 +3,7 @@ _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
 pkgver=1.4.2
-pkgrel=4
+pkgrel=5
 url='https://inkscape.org'
 arch=('x86_64')
 license=('GPL-3.0-or-later')
@@ -61,7 +61,6 @@ depends=(
     #'python-cairo'
     #'python-certifi'
     #'python-chardet'
-    #'python-coverage'
     #'python-cssselect'
     #'python-filelock'
     #'python-gobject'
