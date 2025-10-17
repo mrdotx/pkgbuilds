@@ -1,10 +1,10 @@
 pkgbase = inkscape-stripped
 	pkgdesc = Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)
 	pkgver = 1.4.2
-	pkgrel = 6
+	pkgrel = 7
 	url = https://inkscape.org
 	arch = x86_64
-	license = GPL-3.0-or-later
+	license = GPL-2.0-or-later
 	makedepends = cmake
 	makedepends = boost
 	makedepends = git
@@ -61,8 +61,10 @@ pkgbase = inkscape-stripped
 	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4_2
 	source = inkscape-extensions::git+https://gitlab.com/inkscape/extensions.git
 	source = inkscape-libcroco::git+https://gitlab.com/inkscape/libcroco.git
+	source = fix-build-with-poppler-25.10.0.patch
 	b2sums = a3e1febd62b684c87ebecead107ba38e19c6e45d0bb2ea0cb0269548cac98ec492e0c39c344c45aa52922c976ae3ea0d53bbf13f424f7404e13d98727e70e6ff
 	b2sums = SKIP
 	b2sums = SKIP
+	b2sums = 04f77bf2ee225b195d496a98069121e669f1d7679e5cea5b524e1899ecccca02bced5bc697561b5285a56ffd40c25dfb92330ad687dd5adbb9264e34e93dea43
 
 pkgname = inkscape-stripped

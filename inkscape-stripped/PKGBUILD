@@ -3,10 +3,10 @@ _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
 pkgver=1.4.2
-pkgrel=6
+pkgrel=7
 url='https://inkscape.org'
 arch=('x86_64')
-license=('GPL-3.0-or-later')
+license=('GPL-2.0-or-later')
 makedepends=(
     'cmake'
     'boost'
@@ -100,11 +100,13 @@ source=(
     #'inkscape-extras-inkscape-import-clipart::git+https://gitlab.com/inkscape/extras/inkscape-import-clipart.git'
     #'inkscape-extras-extension-xaml::git+https://gitlab.com/inkscape/extras/extension-xaml.git'
     #'inkscape-extras-extension-afdesign::git+https://gitlab.com/inkscape/extras/extension-afdesign.git'
-    #'inkscape-extras-extension-curve::git+https://gitlab.com/inkscape/extras/extension-curve.git')
+    #'inkscape-extras-extension-curve::git+https://gitlab.com/inkscape/extras/extension-curve.git'
+    'fix-build-with-poppler-25.10.0.patch'
 )
 b2sums=('a3e1febd62b684c87ebecead107ba38e19c6e45d0bb2ea0cb0269548cac98ec492e0c39c344c45aa52922c976ae3ea0d53bbf13f424f7404e13d98727e70e6ff'
         'SKIP'
-        'SKIP')
+        'SKIP'
+        '04f77bf2ee225b195d496a98069121e669f1d7679e5cea5b524e1899ecccca02bced5bc697561b5285a56ffd40c25dfb92330ad687dd5adbb9264e34e93dea43')
 
 _backports=(
     # Fix build with poppler 25.06.0
@@ -154,6 +156,10 @@ prepare() {
       git log --oneline "${_l}" "${_c}"
       git revert --mainline 1 --no-commit "${_c}"
     done
+
+    # Fix build with poppler 25.10.0
+    # See https://gitlab.com/pbs3141/inkscape/-/commit/8a3831d2c12b9f5a20d20b1aeff793bc651b7309
+    patch -Np1 -i "$srcdir/fix-build-with-poppler-25.10.0.patch"
 }
 
 build() {
