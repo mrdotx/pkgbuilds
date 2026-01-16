@@ -3,7 +3,7 @@ _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
 pkgver=1.4.3
-pkgrel=1
+pkgrel=2
 url='https://inkscape.org'
 arch=('x86_64')
 license=('GPL-2.0-or-later')
@@ -107,6 +107,9 @@ b2sums=('a92b1c9251e7d23d0ec05f7ff156760ec0c301c6220e6d1d98c915035c6b0ab0abe857a
         'SKIP')
 
 _backports=(
+    # Fix build with poppler 26.01.0
+    # https://gitlab.com/inkscape/inkscape/-/commit/3a528728ebe33e10bb44d152f47cfedfddbfe18a
+    '3a528728ebe33e10bb44d152f47cfedfddbfe18a'
 )
 
 _reverts=(
