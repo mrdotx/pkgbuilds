@@ -2,13 +2,14 @@
 _pkgname=gimp
 pkgname=gimp-stripped
 pkgdesc='GNU Image Manipulation Program (stripped from most unnecessary dependencies)'
-pkgver=3.0.6
+pkgver=3.0.8
 pkgrel=1
 url='https://www.gimp.org'
 arch=('x86_64')
 license=('GPL-3.0-or-later')
 makedepends=(
     #'alsa-lib'
+    #'bash-completion'
     #'cfitsio'
     #'ghostscript'
     #'gi-docgen'
@@ -77,6 +78,7 @@ depends=(
 )
 optdepends=(
     'alsa-lib: for MIDI event controller module'
+    'bash-completion: for bash completion support'
     'cfitsio: for FITS support'
     'ghostscript: for PostScript support'
     'gjs: for JavaScript scripting support'
@@ -89,7 +91,7 @@ _archive="$_pkgname-$pkgver"
 source=(
     https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.xz
 )
-b2sums=('ef5220a36ca4666db5c8c20628458e5b621b3bfb594be8eda974f3be18429d946e35456428c8a28a957911c6302ab69d2eb35bb7249f332f5ac4d6146c28c9d1')
+b2sums=('327aa7833406bd09d7b36ef5ee59a1c65766ab3faa5085507af4b215688cba659be135a95a4980ee44b95fdfad47bf15fb5ec61e62156761302ba996cc4cd233')
 
 prepare() {
     cd "$_archive"
@@ -101,12 +103,17 @@ build() {
         --prefix=/usr
         --sysconfdir=/etc
         --libexecdir=/usr/bin
-        -Denable-console-bin=true # needs to be reviewed in future versions
-        -Dbug-report-url='https://github.com/mrdotx/pkgbuilds/issues'
+
+        # build properties
+        #-Denable-console-bin=false # TODO: build error
         -Dcheck-update=no
-        -Dlibunwind=false
+        -Dbug-report-url='https://github.com/mrdotx/pkgbuilds/issues'
+        #-Dlibunwind=false # TODO: build error
         -Dlibbacktrace=false
+
+        # features
         -Denable-default-bin=enabled
+        -Dbash-completion=disabled
         -Daa=disabled
         -Dalsa=disabled
         -Dappdata-test=disabled
