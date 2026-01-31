@@ -1,0 +1,59 @@
+# Maintainer: mrdotx <klassiker@gmx.de>
+_pkgname=yt-dlp
+pkgname=yt-dlp-stripped
+pkgdesc='A youtube-dl fork with additional features and fixes (stripped from unnecessary dependencies)'
+pkgver=2026.01.29
+pkgrel=1
+url='https://github.com/yt-dlp/yt-dlp'
+arch=('any')
+license=(Unlicense)
+makedepends=(
+    'python-build'
+    'python-hatchling'
+    'python-installer'
+)
+depends=(
+    'python'
+    'python-certifi'
+    'python-requests'
+    'python-urllib3'
+)
+optdepends=(
+    'ffmpeg: for video post-processing'
+    'rtmpdump: for rtmp streams support'
+    'atomicparsley: for embedding thumbnails into m4a files'
+    'aria2: for using aria2 as external downloader'
+    'python-mutagen: for embedding thumbnail in certain formats'
+    'python-pycryptodome: for decrypting AES-128 HLS streams and various other data'
+    'python-pycryptodomex: for decrypting AES-128 HLS streams and various other data'
+    'python-websockets: for downloading over websocket'
+    'python-brotli: brotli content encoding support'
+    'python-brotlicffi: brotli content encoding support'
+    'python-xattr: for writing xattr metadata'
+    'python-pyxattr: for writing xattr metadata (alternative option)'
+    'phantomjs: for extractors with javascript code'
+    'python-secretstorage: For -cookies-from-browser to access the GNOME keyring while decrypting cookies of Chromium-based browsers'
+    'yt-dlp-ejs: non-deprecated YouTube support'
+)
+checkdepends=('python-pytest')
+provides=("$_pkgname")
+conflicts=("$_pkgname")
+source=(
+    $pkgname-$pkgver.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/$pkgver/yt-dlp.tar.gz
+)
+b2sums=('a2ab7672c1cbfdc6c5a6effc7aefc84515928c4b2815aaaccb59db8890734d2b2e2747ffab4173bf36371420bfd26bb879d9ca0ccb8fbb260c44bfe33c12fd9c')
+
+build() {
+    cd $_pkgname
+    python -m build --wheel --no-isolation
+}
+
+check() {
+    cd $_pkgname
+    pytest -v -m "not download"
+}
+
+package() {
+    cd $_pkgname
+    python -m installer --destdir="$pkgdir" dist/*.whl
+}
