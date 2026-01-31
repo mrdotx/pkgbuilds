@@ -1,11 +1,12 @@
 # path:   /home/klassiker/.local/share/repos/pkgbuilds/.gitignore
 # author: klassiker [mrdotx]
 # url:    https://github.com/mrdotx/pkgbuilds
-# date:   2025-08-08T05:29:14+0200
+# date:   2026-01-31T05:47:31+0100
 
 pkg/
 src/
 *\.tar\.bz2
+*\.tar\.gz
 *\.tar\.xz
 *\.pkg\.tar\.*
 /inkscape-stripped/inkscape*
