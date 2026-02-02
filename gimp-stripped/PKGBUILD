@@ -15,6 +15,7 @@ makedepends=(
     #'gi-docgen'
     #'gjs'
     'glib2-devel'
+    'glibc-locales'
     'gobject-introspection'
     #'gtk-doc'
     #'gvfs'
