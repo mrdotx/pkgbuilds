@@ -2,7 +2,7 @@
 _pkgname=yt-dlp
 pkgname=yt-dlp-stripped
 pkgdesc='A youtube-dl fork with additional features and fixes (stripped from unnecessary dependencies)'
-pkgver=2026.01.31
+pkgver=2026.02.04
 pkgrel=1
 url='https://github.com/yt-dlp/yt-dlp'
 arch=('any')
@@ -39,9 +39,9 @@ checkdepends=('python-pytest')
 provides=("$_pkgname")
 conflicts=("$_pkgname")
 source=(
-    $pkgname-$pkgver.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/$pkgver/yt-dlp.tar.gz
+    $_pkgname-$pkgver.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/$pkgver/yt-dlp.tar.gz
 )
-b2sums=('ec86a20e757c508aefeadb9cdd2496fbeb5700248cfdbc7df627eac18a558d09a01286080ccb0c424d428023f99d5f15a7337bddfd3475ca4e26986c8ca02bf8')
+b2sums=('9c63d39f0aea311d1770371aef4aa0f4f3a435ecd79de9fc34fc145796ded0a317d329be553588e9d688e70fd6df14dc93e73919a90621dab56c19376a161927')
 
 build() {
     cd $_pkgname
