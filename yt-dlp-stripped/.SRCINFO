@@ -1,6 +1,6 @@
 pkgbase = yt-dlp-stripped
 	pkgdesc = A youtube-dl fork with additional features and fixes (stripped from unnecessary dependencies)
-	pkgver = 2026.02.21
+	pkgver = 2026.03.03
 	pkgrel = 1
 	url = https://github.com/yt-dlp/yt-dlp
 	arch = any
@@ -17,6 +17,7 @@ pkgbase = yt-dlp-stripped
 	optdepends = rtmpdump: for rtmp streams support
 	optdepends = atomicparsley: for embedding thumbnails into m4a files
 	optdepends = aria2: for using aria2 as external downloader
+	optdepends = python-curl_cffi: support for impersonating browser requests
 	optdepends = python-mutagen: for embedding thumbnail in certain formats
 	optdepends = python-pycryptodome: for decrypting AES-128 HLS streams and various other data
 	optdepends = python-pycryptodomex: for decrypting AES-128 HLS streams and various other data
@@ -30,7 +31,7 @@ pkgbase = yt-dlp-stripped
 	optdepends = yt-dlp-ejs: non-deprecated YouTube support
 	provides = yt-dlp
 	conflicts = yt-dlp
-	source = yt-dlp-2026.02.21.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/2026.02.21/yt-dlp.tar.gz
-	b2sums = 8a2510cc902e0b9209fe12de00832d522f6383f1ee75309ee8bd7213cb727216da3fce7d267e6d838383e03532b814f802d6888729b659b239c49cc9eb8aa479
+	source = yt-dlp-2026.03.03.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/2026.03.03/yt-dlp.tar.gz
+	b2sums = 851b2cb30225757f6d8942951447dd7afea41dc1e82b94b500bab49ca51dffd093e8760987bcdff35c46b2f6ae4bfbe47b0db65ca7c7bbbaea28c46798d3e739
 
 pkgname = yt-dlp-stripped
