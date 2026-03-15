@@ -1,6 +1,6 @@
 pkgbase = gimp-stripped
 	pkgdesc = GNU Image Manipulation Program (stripped from most unnecessary dependencies)
-	pkgver = 3.0.8
+	pkgver = 3.2.0
 	pkgrel = 1
 	url = https://www.gimp.org
 	arch = x86_64
@@ -21,7 +21,7 @@ pkgbase = gimp-stripped
 	depends = libgexiv2
 	depends = libgomp
 	depends = libstdc++
-	depends = mypaint-brushes1
+	depends = mypaint-brushes
 	depends = libxmu
 	depends = poppler-data
 	depends = poppler-glib
@@ -34,7 +34,7 @@ pkgbase = gimp-stripped
 	optdepends = gvfs: for HTTP/S support (and many other schemes)
 	provides = gimp
 	conflicts = gimp
-	source = https://download.gimp.org/gimp/v3.0/gimp-3.0.8.tar.xz
-	b2sums = 327aa7833406bd09d7b36ef5ee59a1c65766ab3faa5085507af4b215688cba659be135a95a4980ee44b95fdfad47bf15fb5ec61e62156761302ba996cc4cd233
+	source = https://download.gimp.org/gimp/v3.2/gimp-3.2.0.tar.xz
+	b2sums = 67335b5c148b023fe2d36d510885ee91e0ffc2df6786296b2ac8287974925656792cd5f25327839059c898f7a40b281b5a96ab53fc800e42303ded1278ad3c8f
 
 pkgname = gimp-stripped
