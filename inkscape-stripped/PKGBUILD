@@ -3,7 +3,7 @@ _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
 pkgver=1.4.3
-pkgrel=3
+pkgrel=4
 url='https://inkscape.org'
 arch=('x86_64')
 license=('GPL-2.0-or-later')
@@ -111,10 +111,12 @@ _backports=(
     # Fix build with poppler 26.01.0
     # https://gitlab.com/inkscape/inkscape/-/commit/3a528728ebe33e10bb44d152f47cfedfddbfe18a
     '3a528728ebe33e10bb44d152f47cfedfddbfe18a'
-
-    # Fix build with Poppler 0.26.02
+    # Fix build with Poppler 26.02.0
     # https://gitlab.com/inkscape/inkscape/-/commit/47e20c0503ab1464d528f2cc7dd5e6a6a85b70dc
     '47e20c0503ab1464d528f2cc7dd5e6a6a85b70dc'
+    # Fix build with Poppler 26.03.0
+    # https://gitlab.com/inkscape/inkscape/-/commit/754a866b878623554ade26d53496eeb8687c4685
+    '754a866b878623554ade26d53496eeb8687c4685'
 )
 
 _reverts=(
@@ -142,14 +144,14 @@ prepare() {
 
     local _c _l
     for _c in "${_backports[@]}"; do
-      if [[ "${_c}" == *..* ]]; then _l='--reverse'; else _l='--max-count=1'; fi
-      git log --oneline "${_l}" "${_c}"
-      git cherry-pick --mainline 1 --no-commit -X ignore-all-space "${_c}"
+        if [[ "${_c}" == *..* ]]; then _l='--reverse'; else _l='--max-count=1'; fi
+        git log --oneline "${_l}" "${_c}"
+        git cherry-pick --mainline 1 --no-commit -X ignore-all-space "${_c}"
     done
     for _c in "${_reverts[@]}"; do
-      if [[ "${_c}" == *..* ]]; then _l='--reverse'; else _l='--max-count=1'; fi
-      git log --oneline "${_l}" "${_c}"
-      git revert --mainline 1 --no-commit "${_c}"
+        if [[ "${_c}" == *..* ]]; then _l='--reverse'; else _l='--max-count=1'; fi
+        git log --oneline "${_l}" "${_c}"
+        git revert --mainline 1 --no-commit "${_c}"
     done
 }
 
