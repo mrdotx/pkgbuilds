@@ -2,7 +2,7 @@
 _pkgname=gimp
 pkgname=gimp-stripped
 pkgdesc='GNU Image Manipulation Program (stripped from most unnecessary dependencies)'
-pkgver=3.2.0
+pkgver=3.2.2
 pkgrel=1
 url='https://www.gimp.org'
 arch=('x86_64')
@@ -23,6 +23,7 @@ makedepends=(
     'libxslt'
     'meson'
     'python-gobject'
+    'python-cairo'
     'qoi'
     #'vala'
 )
@@ -53,6 +54,7 @@ depends=(
     'mypaint-brushes'
     #'pango'
     #'python-gobject'
+    #'python-cairo'
     #'zlib'
 
     # plugins deps
@@ -95,7 +97,7 @@ _archive="$_pkgname-$pkgver"
 source=(
     https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.xz
 )
-b2sums=('67335b5c148b023fe2d36d510885ee91e0ffc2df6786296b2ac8287974925656792cd5f25327839059c898f7a40b281b5a96ab53fc800e42303ded1278ad3c8f')
+b2sums=('769e218707535e5c35df48d985a4c4f6007d9225cd7c24566081af30ec34dac9cc8b7f901a80947d9f2fc23915f8918bc300c7c2116ad98ffbb2df6f2549c3fc')
 
 prepare() {
     cd "$_archive"
