@@ -3,9 +3,9 @@
 # path:   /home/klassiker/.local/share/repos/pkgbuilds/wg++-legacy/wg++
 # author: klassiker [mrdotx]
 # url:    https://github.com/mrdotx/pkgbuilds
-# date:   2025-08-08T05:29:23+0200
+# date:   2026-04-22T02:11:49+0200
 
-config_path="$HOME/wg++"
+config_dir="$HOME/wg++"
 config_file="WebGrab++.config.xml"
 exec_cmd="mono /opt/wg++/bin/WebGrab+Plus.exe"
 
@@ -13,7 +13,7 @@ script=$(basename "$0")
 help="$script [-h/--help] -- script to start WebGrab+Plus.exe
   Introduction:
     Webgrabber+Plus was never intended to be installed in a Unix operating
-    system. It was intended to be used as a folder to which the user has
+    system. It was intended to be used as a directory to which the user has
     read/write access. This script was needed to make it behave like a real
     application, installed in the operating system.
 
@@ -36,7 +36,7 @@ help="$script [-h/--help] -- script to start WebGrab+Plus.exe
     $script '/path/to/configuration_directory'
 
   Config:
-    config path  = $config_path
+    config dir   = $config_dir
     config file  = $config_file
     exec command = $exec_cmd"
 
@@ -50,38 +50,38 @@ esac
 
 # check if the user has specified arguments
 if [ $# -eq 0 ]; then # the user has not passed any arguments to wg++
-    # use default configuration directory "$config_path"
-    if [ ! -d "$config_path" ]; then
-        cp -R /usr/share/wg++ "$config_path"
-        if [ -d "$config_path" ]; then
-            printf "Configuration folder '%s' created! Run '%s' again to use it.\n" \
-                "$config_path" "$script"
+    # use default configuration directory "$config_dir"
+    if [ ! -d "$config_dir" ]; then
+        cp -R /usr/share/wg++ "$config_dir"
+        if [ -d "$config_dir" ]; then
+            printf "Configuration directory '%s' created! Run '%s' again to use it.\n" \
+                "$config_dir" "$script"
             printf "For more information, see '%s --help'.\n" \
                 "$script"
             exit 0
         else
-            printf "Failed to create configuration folder '%s'!\n" \
-                "$config_path"
+            printf "Failed to create configuration directory '%s'!\n" \
+                "$config_dir"
             printf "%s\n" "$help"
             exit 1
         fi
     fi
 
-    # check if "$config_path" contains the configuration file
-    [ ! -f "$config_path/$config_file" ] \
+    # check if "$config_dir" contains the configuration file
+    [ ! -f "$config_dir/$config_file" ] \
         && printf "The configuration file is missing in '%s' directory!\n" \
-            "$config_path" \
+            "$config_dir" \
         && printf "%s\n" "$help" \
         && exit 1
 
-    # check if the user can read/write "$config_path/$config_file"
-    { [ ! -r "$config_path/$config_file" ] || [ ! -w "$config_path/$config_file" ]; } \
+    # check if the user can read/write "$config_dir/$config_file"
+    { [ ! -r "$config_dir/$config_file" ] || [ ! -w "$config_dir/$config_file" ]; } \
         && printf "You do not have read/write access in '%s'.\n" \
-            "$config_path" \
+            "$config_dir" \
         && printf "%s\n" "$help" \
         && exit 1
 
-    eval "$exec_cmd $config_path"
+    eval "$exec_cmd $config_dir"
 else # the user has passed arguments to wg++
     # check whether 1 argument is present and whether it is an existing directory
     { [ $# -ge 2 ] || [ ! -d "$1" ]; } \

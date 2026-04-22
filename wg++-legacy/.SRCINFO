@@ -1,7 +1,7 @@
 pkgbase = wg++-legacy
 	pkgdesc = WebGrab+Plus is a free multi-site incremental XMLTV EPG grabber.
 	pkgver = 2.1.0_20190107123114
-	pkgrel = 4
+	pkgrel = 5
 	url = http://webgrabplus.com
 	arch = any
 	license = custom
@@ -13,6 +13,6 @@ pkgbase = wg++-legacy
 	source = wg++
 	b2sums = 2c3a5b81bcccd3248cb77c6d56d1ca2d92112af544f3d299497944dd93ebcb7998938312da9f734c32c1d243314505946733bdf1f3e51b056381d14f8d409f9e
 	b2sums = 55d777037469bef562a9a5fcb3adc9a056a2eb27860003c7ecc4a605741a41e1014a9367c5661245491de83a073635cfd66895320815f2245bad254c37e604f5
-	b2sums = a5f2a527c6af064c37b5bb8f2599073978009d8b72b03af6526eaa6ff15f98f53f7639ca53a1e42e4e0a43dd7280496a48d5f4f09eb246d6ca47b2191abf2b90
+	b2sums = 0d18f2fa730be615871fe85a1eac47f0b1016da50481723859002639ae2df26b46d035fa7c54b43fe3dd2535e0a5bd4d7ac324a6e755d5792a032a0e8b359de6
 
 pkgname = wg++-legacy
