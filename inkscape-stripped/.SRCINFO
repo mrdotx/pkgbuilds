@@ -1,7 +1,7 @@
 pkgbase = inkscape-stripped
 	pkgdesc = Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)
-	pkgver = 1.4.3
-	pkgrel = 7
+	pkgver = 1.4.4
+	pkgrel = 1
 	url = https://inkscape.org
 	arch = x86_64
 	license = GPL-2.0-or-later
@@ -60,13 +60,11 @@ pkgbase = inkscape-stripped
 	optdepends = texlive-pstricks: latex formulas
 	provides = inkscape
 	conflicts = inkscape
-	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4_3
+	source = git+https://gitlab.com/inkscape/inkscape.git#tag=INKSCAPE_1_4_4
 	source = inkscape-extensions::git+https://gitlab.com/inkscape/extensions.git
 	source = inkscape-libcroco::git+https://gitlab.com/inkscape/libcroco.git
-	source = fix_build_with_poppler_26.04.0.patch
-	b2sums = a92b1c9251e7d23d0ec05f7ff156760ec0c301c6220e6d1d98c915035c6b0ab0abe857ac9d0d4255753062979eeb3f88b44d1ddf456e181d532d093de4dac31b
+	b2sums = b05837aa6cccefab182b65fffcaff2bbb260a9f3cdd957b0e984767123c7bc3b54102aaf506b06d7132fcf6b9f00d7583a2838269bf038bd756fb93e93d455d6
 	b2sums = SKIP
 	b2sums = SKIP
-	b2sums = 5b87d76a63118dc29ec6682ba1c55f6c55ac489fc61cd378dc9c4d5c0422c2fb4f626bb0adb6fe504d835a9b5186a5e8dc76e73579acf1b436256d97025fc2a1
 
 pkgname = inkscape-stripped
