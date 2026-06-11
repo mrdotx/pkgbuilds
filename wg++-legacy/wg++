@@ -1,9 +1,9 @@
 #!/bin/sh
 
-# path:   /home/klassiker/.local/share/repos/pkgbuilds/wg++-legacy/wg++
+# path:   /home/klassiker/Projects/repos/pkgbuilds/wg++-legacy/wg++
 # author: klassiker [mrdotx]
 # url:    https://github.com/mrdotx/pkgbuilds
-# date:   2026-04-22T02:11:49+0200
+# date:   2026-06-11T05:04:45+0200
 
 config_dir="$HOME/wg++"
 config_file="WebGrab++.config.xml"
