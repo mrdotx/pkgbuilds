@@ -3,7 +3,7 @@ _pkgname=inkscape
 pkgname=inkscape-stripped
 pkgdesc='Professional vector graphics editor (stripped from most unnecessary dependencies and extensions)'
 pkgver=1.4.4
-pkgrel=2
+pkgrel=3
 url='https://inkscape.org'
 arch=('x86_64')
 license=('GPL-2.0-or-later')
@@ -103,11 +103,13 @@ source=(
     #'inkscape-extras-extension-afdesign::git+https://gitlab.com/inkscape/extras/extension-afdesign.git'
     #'inkscape-extras-extension-curve::git+https://gitlab.com/inkscape/extras/extension-curve.git'
     'fix_build_with_poppler_26.05.patch'
+    'fix_build_with_poppler_26.06.patch'
 )
 b2sums=('b05837aa6cccefab182b65fffcaff2bbb260a9f3cdd957b0e984767123c7bc3b54102aaf506b06d7132fcf6b9f00d7583a2838269bf038bd756fb93e93d455d6'
         'SKIP'
         'SKIP'
-        'aca18098282e73bc7811ccb2b62f01fc54f7d0e51926c2220e4c2c4d438c3fce49885556d65c6f078046455a26bd0369b6e9111cebeef35e77aa703dded3b03f')
+        'aca18098282e73bc7811ccb2b62f01fc54f7d0e51926c2220e4c2c4d438c3fce49885556d65c6f078046455a26bd0369b6e9111cebeef35e77aa703dded3b03f'
+        '97684afab0f8a2d73bf68d8f7582ebc0cbfff0c0857f1e7e1dc441dbf5794f87b4655ac7fb87a094fff6209f21fbe20c6689febd8ae0daf61370206bae680cdf')
 
 _backports=(
 )
@@ -151,6 +153,9 @@ prepare() {
     # https://gitlab.com/inkscape/inkscape/-/merge_requests/7919
     patch -Np1 -i "$srcdir/fix_build_with_poppler_26.05.patch"
 
+    # Fix build with poppler 26.06
+    # https://gitlab.com/inkscape/inkscape/-/work_items/6210#note_3438034571
+    patch -Np1 -i "$srcdir/fix_build_with_poppler_26.06.patch"
 }
 
 build() {
