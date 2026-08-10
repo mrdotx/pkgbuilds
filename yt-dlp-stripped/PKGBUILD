@@ -32,7 +32,6 @@ optdepends=(
     'python-brotlicffi: brotli content encoding support'
     'python-xattr: for writing xattr metadata'
     'python-pyxattr: for writing xattr metadata (alternative option)'
-    'phantomjs: for extractors with javascript code'
     'python-secretstorage: For -cookies-from-browser to access the GNOME keyring while decrypting cookies of Chromium-based browsers'
     'yt-dlp-ejs: non-deprecated YouTube support'
 )
