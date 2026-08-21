@@ -1,6 +1,6 @@
 pkgbase = yt-dlp-stripped
 	pkgdesc = A youtube-dl fork with additional features and fixes (stripped from unnecessary dependencies)
-	pkgver = 2026.07.04
+	pkgver = 2026.08.19
 	pkgrel = 1
 	url = https://github.com/yt-dlp/yt-dlp
 	arch = any
@@ -26,12 +26,11 @@ pkgbase = yt-dlp-stripped
 	optdepends = python-brotlicffi: brotli content encoding support
 	optdepends = python-xattr: for writing xattr metadata
 	optdepends = python-pyxattr: for writing xattr metadata (alternative option)
-	optdepends = phantomjs: for extractors with javascript code
 	optdepends = python-secretstorage: For -cookies-from-browser to access the GNOME keyring while decrypting cookies of Chromium-based browsers
 	optdepends = yt-dlp-ejs: non-deprecated YouTube support
 	provides = yt-dlp
 	conflicts = yt-dlp
-	source = yt-dlp-2026.07.04.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/2026.07.04/yt-dlp.tar.gz
-	b2sums = f073a56a3ed463f7e84416dae2d76d119f22d5c444ecce892b45dd486709eb93ca7ba6baf00a548417f78a14200c3f5acec34085733b2fcd7d0fd967139eb938
+	source = yt-dlp-2026.08.19.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/2026.08.19/yt-dlp.tar.gz
+	b2sums = 72b949e257d8b5f273247cd7c2cc704efe628b943f63276039f2cf0e1ac1b97aa84acf550ed382e3780e36990c023f4025bb0896dd875b3930791a4e9bc24448
 
 pkgname = yt-dlp-stripped
