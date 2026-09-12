@@ -2,7 +2,7 @@
 _pkgname=gimp
 pkgname=gimp-stripped
 pkgdesc='GNU Image Manipulation Program (stripped from most unnecessary dependencies)'
-pkgver=3.2.4
+pkgver=3.2.6
 pkgrel=1
 url='https://www.gimp.org'
 arch=('x86_64')
@@ -97,7 +97,7 @@ _archive="$_pkgname-$pkgver"
 source=(
     https://download.gimp.org/gimp/v${pkgver%.*}/$_archive.tar.xz
 )
-b2sums=('318687e03f60a44787737b6b241977bc7b9a1c8313e4ebdc8ef3991e15e3f70c69308167d18453e3cfce125d3b64d56799fe3f8af03e999e9b70ade8e8d0865e')
+b2sums=('639ba66577c85cad7250924c882eb65416853a92a84f587d2b9982e3b5face9bca8e6c5f96b74ef6431a62adbb73bfe11ef89bdbd372e07be30085f5f74ac117')
 
 prepare() {
     cd "$_archive"
