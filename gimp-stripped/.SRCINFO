@@ -30,6 +30,7 @@ pkgbase = gimp-stripped
 	optdepends = bash-completion: for bash completion support
 	optdepends = cfitsio: for FITS support
 	optdepends = ghostscript: for PostScript support
+	optdepends = gimp-help: for offline help support
 	optdepends = gjs: for JavaScript scripting support
 	optdepends = gutenprint: for sophisticated printing only as gimp has built-in cups print support
 	optdepends = gvfs: for HTTP/S support (and many other schemes)

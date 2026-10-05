@@ -87,6 +87,7 @@ optdepends=(
     'bash-completion: for bash completion support'
     'cfitsio: for FITS support'
     'ghostscript: for PostScript support'
+    'gimp-help: for offline help support'
     'gjs: for JavaScript scripting support'
     'gutenprint: for sophisticated printing only as gimp has built-in cups print support'
     'gvfs: for HTTP/S support (and many other schemes)'
