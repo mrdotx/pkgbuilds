@@ -1,6 +1,6 @@
 pkgbase = yt-dlp-stripped
 	pkgdesc = A youtube-dl fork with additional features and fixes (stripped from unnecessary dependencies)
-	pkgver = 2026.10.21
+	pkgver = 2026.10.26
 	pkgrel = 1
 	url = https://github.com/yt-dlp/yt-dlp
 	arch = any
@@ -30,7 +30,7 @@ pkgbase = yt-dlp-stripped
 	optdepends = yt-dlp-ejs: non-deprecated YouTube support
 	provides = yt-dlp
 	conflicts = yt-dlp
-	source = yt-dlp-2026.10.21.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.21/yt-dlp.tar.gz
-	b2sums = 5b20903c6c69fca97d27e238addf8cfbf810eb7fa511141b4928d40679d55e107ded870f02ceed6b00cec70db4eb0eaecf37a64b4ddb2a0b614a340b57cab5ec
+	source = yt-dlp-2026.10.26.tar.gz::https://github.com/yt-dlp/yt-dlp/releases/download/2026.10.26/yt-dlp.tar.gz
+	b2sums = a545d5e75587db167281578020080811311dc4944ed604619562fe1ee8e9b43bf76c3349e4c06249d48f483860a65f1c39778f7f22ec17959405b0f82aa473c7
 
 pkgname = yt-dlp-stripped
