@@ -1,6 +1,6 @@
 pkgbase = gimp-stripped
 	pkgdesc = GNU Image Manipulation Program (stripped from most unnecessary dependencies)
-	pkgver = 3.2.6
+	pkgver = 3.2.8
 	pkgrel = 1
 	url = https://www.gimp.org
 	arch = x86_64
@@ -36,7 +36,7 @@ pkgbase = gimp-stripped
 	optdepends = gvfs: for HTTP/S support (and many other schemes)
 	provides = gimp
 	conflicts = gimp
-	source = https://download.gimp.org/gimp/v3.2/gimp-3.2.6.tar.xz
-	b2sums = 639ba66577c85cad7250924c882eb65416853a92a84f587d2b9982e3b5face9bca8e6c5f96b74ef6431a62adbb73bfe11ef89bdbd372e07be30085f5f74ac117
+	source = https://download.gimp.org/gimp/v3.2/gimp-3.2.8.tar.xz
+	b2sums = cec1ff00e4ce003258d196118d9b5a9ce07228b3cd58709d6e4f86ea754227aeaf0cbc65c231f370cf0dd09d240e7cdd815ac6661ebb349bfc6dadd1d8e00253
 
 pkgname = gimp-stripped
